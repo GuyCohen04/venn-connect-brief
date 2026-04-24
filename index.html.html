@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Venn Connect Rate Brief / Guy Cohen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=JetBrains+Mono:wght@400;500&family=Inter+Tight:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ffffff;
+    --bg-alt: #f5f7f5;
+    --bg-dark: #0a0f0a;
+    --fg: #0a0f0a;
+    --fg-muted: #4a524a;
+    --fg-light: #8b938b;
+    --accent: #0f7a3f;
+    --accent-deep: #084a26;
+    --accent-soft: #e6f1ea;
+    --line: #e4e7e4;
+    --line-strong: #0a0f0a;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: 'Inter Tight', sans-serif;
+    line-height: 1.55;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 80px 60px 120px;
+  }
+
+  header {
+    border-bottom: 1px solid var(--line-strong);
+    padding-bottom: 40px;
+    margin-bottom: 60px;
+  }
+
+  .meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--fg-muted);
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 24px;
+  }
+
+  .meta span { color: var(--accent); }
+
+  h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: clamp(42px, 6vw, 68px);
+    line-height: 0.98;
+    letter-spacing: -0.02em;
+    margin-bottom: 24px;
+  }
+
+  h1 em {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--accent);
+  }
+
+  .subtitle {
+    font-size: 18px;
+    color: var(--fg-muted);
+    max-width: 700px;
+    line-height: 1.5;
+  }
+
+  .byline {
+    margin-top: 32px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--fg-light);
+  }
+
+  .byline strong {
+    color: var(--fg);
+    font-weight: 500;
+  }
+
+  section { margin-bottom: 80px; }
+
+  .section-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin-bottom: 28px;
+    max-width: 680px;
+  }
+
+  h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 22px;
+    margin-bottom: 12px;
+    letter-spacing: -0.005em;
+  }
+
+  p {
+    font-size: 16px;
+    margin-bottom: 18px;
+    max-width: 680px;
+    color: var(--fg);
+  }
+
+  p.lede {
+    font-size: 19px;
+    line-height: 1.5;
+    color: var(--fg);
+    margin-bottom: 28px;
+  }
+
+  strong { font-weight: 600; color: var(--fg); }
+  em { font-style: italic; }
+
+  a.cite {
+    color: var(--accent);
+    text-decoration: none;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    vertical-align: super;
+    font-weight: 500;
+    padding: 0 2px;
+    letter-spacing: 0.02em;
+  }
+
+  a.cite:hover { text-decoration: underline; }
+
+  .callout {
+    background: var(--bg-alt);
+    border-left: 3px solid var(--accent);
+    padding: 24px 28px;
+    margin: 32px 0;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 19px;
+    line-height: 1.5;
+    color: var(--fg);
+    max-width: 700px;
+  }
+
+  .formula {
+    background: var(--bg-dark);
+    color: #ffffff;
+    padding: 40px 44px;
+    margin: 36px 0;
+    border-radius: 2px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .formula-label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #8b938b;
+    margin-bottom: 20px;
+  }
+
+  .formula-line {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #ffffff;
+  }
+
+  .formula-line span.op {
+    color: var(--accent);
+    padding: 0 8px;
+  }
+
+  .formula-math {
+    border-top: 1px solid #1a231a;
+    margin-top: 24px;
+    padding-top: 20px;
+    font-size: 13px;
+    color: #c0c7c0;
+  }
+
+  .formula-math strong { color: #fff; }
+
+  .breakdown {
+    border-top: 1px solid var(--line-strong);
+    margin: 32px 0;
+  }
+
+  .breakdown-row {
+    border-bottom: 1px solid var(--line);
+    padding: 24px 0;
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+
+  .breakdown-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    padding-top: 4px;
+  }
+
+  .breakdown-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 20px;
+    margin-bottom: 8px;
+  }
+
+  .breakdown-body {
+    font-size: 15px;
+    color: var(--fg-muted);
+    line-height: 1.55;
+  }
+
+  .icp-stats {
+    background: var(--accent-soft);
+    border-radius: 2px;
+    padding: 32px 36px;
+    margin: 32px 0;
+  }
+
+  .icp-stats-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent-deep);
+    margin-bottom: 20px;
+  }
+
+  .icp-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .icp-stat {
+    border-left: 2px solid var(--accent);
+    padding-left: 16px;
+  }
+
+  .icp-stat-value {
+    font-family: 'Fraunces', serif;
+    font-size: 26px;
+    font-weight: 500;
+    color: var(--accent-deep);
+    line-height: 1.1;
+    margin-bottom: 6px;
+    letter-spacing: -0.01em;
+  }
+
+  .icp-stat-label {
+    font-size: 13px;
+    color: var(--fg-muted);
+    line-height: 1.4;
+  }
+
+  .segment-tiers {
+    margin: 32px 0;
+    border-top: 1px solid var(--line-strong);
+    border-bottom: 1px solid var(--line-strong);
+  }
+
+  .segment-row {
+    display: grid;
+    grid-template-columns: 120px 1fr 140px;
+    gap: 24px;
+    padding: 22px 0;
+    border-bottom: 1px solid var(--line);
+    align-items: start;
+  }
+
+  .segment-row:last-child { border-bottom: none; }
+
+  .segment-tier {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding-top: 3px;
+    font-weight: 500;
+  }
+
+  .segment-name {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 17px;
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+
+  .segment-detail {
+    font-size: 13px;
+    color: var(--fg-muted);
+    line-height: 1.5;
+  }
+
+  .segment-difficulty {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--fg-light);
+    text-align: right;
+    padding-top: 4px;
+  }
+
+  .segment-difficulty strong {
+    display: block;
+    font-family: 'Fraunces', serif;
+    font-size: 15px;
+    color: var(--fg);
+    font-weight: 500;
+    letter-spacing: normal;
+    text-transform: none;
+    margin-bottom: 2px;
+  }
+
+  .waterfall {
+    background: var(--bg-alt);
+    padding: 32px 36px;
+    margin: 24px 0;
+    border-radius: 2px;
+  }
+
+  .waterfall-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent-deep);
+    margin-bottom: 20px;
+  }
+
+  .waterfall-stage {
+    display: grid;
+    grid-template-columns: 36px 1fr;
+    gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px dashed var(--line);
+    align-items: start;
+  }
+
+  .waterfall-stage:last-child { border-bottom: none; }
+
+  .waterfall-num {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2px;
+  }
+
+  .waterfall-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 16px;
+    margin-bottom: 4px;
+    color: var(--fg);
+  }
+
+  .waterfall-body {
+    font-size: 14px;
+    color: var(--fg-muted);
+    line-height: 1.55;
+  }
+
+  .waterfall-body strong { color: var(--fg); }
+
+  .channels {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    margin: 32px 0;
+  }
+
+  .channel {
+    border: 1px solid var(--line);
+    padding: 28px 32px;
+    position: relative;
+    background: var(--bg);
+  }
+
+  .channel:not(:last-child) { border-bottom: none; }
+
+  .channel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .channel-name {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 22px;
+    letter-spacing: -0.005em;
+  }
+
+  .channel-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-soft);
+    padding: 4px 10px;
+    border-radius: 2px;
+  }
+
+  .channel-what {
+    font-size: 15px;
+    margin-bottom: 14px;
+    color: var(--fg);
+  }
+
+  .channel-why {
+    font-size: 14px;
+    color: var(--fg-muted);
+    line-height: 1.55;
+    border-top: 1px dashed var(--line);
+    padding-top: 14px;
+  }
+
+  .channel-why strong { color: var(--fg); }
+
+  .timeline { margin: 32px 0; }
+
+  .week-row {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 32px;
+    padding: 28px 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .week-row:last-child { border-bottom: 1px solid var(--line); }
+
+  .week-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--fg-light);
+    padding-top: 4px;
+  }
+
+  .week-label strong {
+    display: block;
+    font-size: 20px;
+    color: var(--fg);
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    letter-spacing: normal;
+    text-transform: none;
+    margin-bottom: 4px;
+  }
+
+  .week-content h4 {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    margin-bottom: 10px;
+    color: var(--fg);
+  }
+
+  .week-content ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .week-content li {
+    font-size: 14.5px;
+    color: var(--fg-muted);
+    padding: 6px 0 6px 20px;
+    position: relative;
+    line-height: 1.5;
+  }
+
+  .week-content li::before {
+    content: '›';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 500;
+  }
+
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--line-strong);
+    margin: 32px 0;
+    border: 1px solid var(--line-strong);
+  }
+
+  .metric {
+    background: var(--bg);
+    padding: 28px 24px;
+  }
+
+  .metric-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--fg-light);
+    margin-bottom: 12px;
+  }
+
+  .metric-value {
+    font-family: 'Fraunces', serif;
+    font-size: 32px;
+    font-weight: 400;
+    color: var(--fg);
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+
+  .metric-value em {
+    color: var(--accent);
+    font-style: normal;
+  }
+
+  .metric-note {
+    font-size: 12px;
+    color: var(--fg-muted);
+    line-height: 1.4;
+  }
+
+  .deliverables {
+    background: var(--bg-alt);
+    padding: 40px 44px;
+    margin: 32px 0;
+    border-radius: 2px;
+  }
+
+  .deliverables h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .deliverables ol {
+    padding-left: 0;
+    list-style: none;
+    counter-reset: deliv;
+  }
+
+  .deliverables li {
+    counter-increment: deliv;
+    padding: 14px 0 14px 44px;
+    position: relative;
+    border-bottom: 1px solid var(--line);
+    font-size: 15px;
+  }
+
+  .deliverables li:last-child { border-bottom: none; }
+
+  .deliverables li::before {
+    content: counter(deliv, decimal-leading-zero);
+    position: absolute;
+    left: 0;
+    top: 14px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+  }
+
+  .deliverables li strong {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: var(--fg);
+  }
+
+  .deliverables li span {
+    color: var(--fg-muted);
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .references {
+    border-top: 1px solid var(--line-strong);
+    padding-top: 40px;
+    margin-top: 80px;
+  }
+
+  .references h3 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--fg);
+    margin-bottom: 24px;
+    font-weight: 500;
+  }
+
+  .references ol {
+    list-style: none;
+    counter-reset: ref;
+    padding: 0;
+  }
+
+  .references li {
+    counter-increment: ref;
+    padding: 12px 0 12px 44px;
+    position: relative;
+    font-size: 13px;
+    color: var(--fg-muted);
+    line-height: 1.55;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .references li:last-child { border-bottom: none; }
+
+  .references li::before {
+    content: '[' counter(ref) ']';
+    position: absolute;
+    left: 0;
+    top: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .references li strong {
+    color: var(--fg);
+    font-weight: 500;
+  }
+
+  .references li a {
+    color: var(--accent);
+    text-decoration: none;
+    word-break: break-word;
+  }
+
+  .references li a:hover { text-decoration: underline; }
+
+  footer {
+    margin-top: 80px;
+    padding-top: 40px;
+    border-top: 1px solid var(--line-strong);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  footer .sig {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--fg);
+  }
+
+  footer .contact {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--fg-muted);
+    letter-spacing: 0.05em;
+    text-align: right;
+    line-height: 1.8;
+  }
+
+  footer .contact a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  @media (max-width: 720px) {
+    .page { padding: 60px 28px 80px; }
+    h1 { font-size: 40px; }
+    h2 { font-size: 28px; }
+    .metrics-grid,
+    .icp-stats-grid { grid-template-columns: 1fr; }
+    .week-row,
+    .segment-row { grid-template-columns: 1fr; gap: 12px; }
+    .segment-difficulty { text-align: left; }
+    .formula { padding: 28px 24px; }
+    .deliverables,
+    .waterfall { padding: 28px 24px; }
+    .icp-stats { padding: 24px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <header>
+    <div class="meta">
+      <span>Strategy Brief / Private</span>
+      <span>For Alexandra / Venn</span>
+    </div>
+    <h1>The connect rate problem <em>isn't one problem.</em></h1>
+    <p class="subtitle">A 2-month plan to systematically raise Venn's connect rate with owners and controllers at high card-spend Canadian SMBs. Tourism operators, construction firms, digital agencies, import/export businesses, and any cash-heavy company the big banks underserve. Where the pipeline stalls before a conversation even starts.</p>
+    <div class="byline">
+      <strong>Prepared by Guy Cohen</strong> &nbsp;·&nbsp; April 2026
+    </div>
+  </header>
+
+  <section>
+    <span class="section-num">01 / The Problem</span>
+    <h2>Reps aren't losing on the pitch. They're losing before the call starts.</h2>
+
+    <p class="lede">Venn's ICP spans tourism operators, construction firms, digital agencies, import/export businesses, and any Canadian SMB with high card spend and a rough relationship with the Big 5. Typically 15 to 100 employees. Once your reps connect with the right decision-maker, the product sells itself: 0.25% FX spread vs. 2&ndash;3% bank spreads<a href="#ref1" class="cite">[1]</a>, 2% interest on CAD and USD balances, zero monthly fees. The value is real and the switching cost is low.</p>
+
+    <p>The breakdown happens one step earlier. Apollo's data doesn't verify for these buyers. ZoomInfo is too expensive to scale across the team. These owners aren't on LinkedIn, and the controllers who are don't answer InMail. Reps burn hours dialing numbers that go nowhere, hitting receptionists trained to block, or landing voicemails that never get returned.</p>
+
+    <div class="callout">
+      The real problem isn't that Venn has bad data. It's that "connect rate" is a compound metric, and every layer of it is broken for this ICP.
+    </div>
+
+    <div class="formula">
+      <div class="formula-label">Connect Rate, Decomposed</div>
+      <div class="formula-line">
+        <strong style="color:#fff">Right Number</strong>
+        <span class="op">×</span>
+        <strong style="color:#fff">Answer Rate</strong>
+        <span class="op">×</span>
+        <strong style="color:#fff">Right Person</strong>
+        <span class="op">=</span>
+        <strong style="color:#fff">Connect</strong>
+      </div>
+      <div class="formula-math">
+        If Apollo gives you a <strong>15% accurate number</strong> × a <strong>20% answer rate</strong> (industry B2B cold benchmark)<a href="#ref2" class="cite" style="color:var(--accent)">[2]</a> × a <strong>50% right-person rate</strong> (controller gatekept behind reception), the math lands at <strong>~1.5% connect per dial</strong>. Even doubling number accuracy only gets you to 3%. Fixing one layer doesn't fix the rate. Each layer has to be attacked independently.
+      </div>
+    </div>
+
+    <p>This matters because rep output is capped by whichever layer is worst. Across the team, even a 2-percentage-point lift in connect rate compounds into dozens of additional qualified conversations per week. And conversations are what Venn closes on.</p>
+  </section>
+
+  <section>
+    <span class="section-num">02 / Not All of Venn's ICP Is Equally Hard</span>
+    <h2>Within the ICP, the connect problem varies sharply by segment.</h2>
+
+    <p class="lede">Venn's ICP isn't monolithic. Some segments (digital agencies, food &amp; beverage operators under 35 owners) are reachable through standard outbound. Others (construction, import/export, hotel operators) require a fundamentally different motion. Any plan that treats them the same will miss.</p>
+
+    <p>The public data tells the story clearly:</p>
+
+    <div class="icp-stats">
+      <div class="icp-stats-label">The Canadian SMB opportunity, by the numbers</div>
+      <div class="icp-stats-grid">
+        <div class="icp-stat">
+          <div class="icp-stat-value">1.1M+</div>
+          <div class="icp-stat-label">Employer businesses in Canada. 77.3% have fewer than 10 employees<a href="#ref3" class="cite">[3]</a></div>
+        </div>
+        <div class="icp-stat">
+          <div class="icp-stat-value">92%</div>
+          <div class="icp-stat-label">Of Canadian construction companies are single-owner operations<a href="#ref4" class="cite">[4]</a></div>
+        </div>
+        <div class="icp-stat">
+          <div class="icp-stat-value">39%</div>
+          <div class="icp-stat-label">Of Canada's self-employed are aged 55+, vs. 20% in the broader workforce<a href="#ref5" class="cite">[5]</a></div>
+        </div>
+        <div class="icp-stat">
+          <div class="icp-stat-value">81.5%</div>
+          <div class="icp-stat-label">Of tourism SMBs are active online, vs. 59.2% of all SMBs<a href="#ref6" class="cite">[6]</a></div>
+        </div>
+      </div>
+    </div>
+
+    <p>That last stat is the key unlock. Tourism is actually <em>more</em> digital than the average SMB, but that hides a split within it. Food &amp; beverage and arts/entertainment skew younger and more reachable. Hotels and accommodation skew older and gatekept. Construction and import/export live almost entirely off digital channels.</p>
+
+    <h3 style="margin-top: 40px; margin-bottom: 16px;">Segmenting Venn's ICP by connect difficulty</h3>
+
+    <div class="segment-tiers">
+
+      <div class="segment-row">
+        <div class="segment-tier">Tier A</div>
+        <div>
+          <div class="segment-name">Digital agencies + Food &amp; beverage operators</div>
+          <div class="segment-detail">Younger owners, active on LinkedIn, check email during the workday. Standard outbound and email works. Venn is already winning here. Leave it alone, don't over-invest.</div>
+        </div>
+        <div class="segment-difficulty">
+          <strong>Reachable</strong>
+          Standard outbound
+        </div>
+      </div>
+
+      <div class="segment-row">
+        <div class="segment-tier">Tier B</div>
+        <div>
+          <div class="segment-name">Hotels, accommodation, arts &amp; recreation operators</div>
+          <div class="segment-detail">Mid-age owners, moderate online presence, responsive to warm referrals but skeptical of cold outbound. Partially reachable through industry channels and accountant intros.</div>
+        </div>
+        <div class="segment-difficulty">
+          <strong>Moderate</strong>
+          Mixed motion
+        </div>
+      </div>
+
+      <div class="segment-row">
+        <div class="segment-tier">Tier C</div>
+        <div>
+          <div class="segment-name">Construction firms, import/export businesses, traditional cash-heavy SMBs</div>
+          <div class="segment-detail">92% are single-owner operations<a href="#ref4" class="cite">[4]</a>. Owners typically 55+. Tourism SMEs are notably more likely than other SMBs to have an immigrant primary decision-maker (41.9% vs. 31.2%)<a href="#ref6" class="cite">[6]</a>. LinkedIn presence minimal or nonexistent. Company websites list only reception lines. Apollo data fails here most often. Only 12.1% of Canadian SMBs even export, making import/export decision-makers a small, dispersed target<a href="#ref7" class="cite">[7]</a>.</div>
+        </div>
+        <div class="segment-difficulty">
+          <strong>Hard</strong>
+          Requires new channel
+        </div>
+      </div>
+
+    </div>
+
+    <p style="margin-top: 28px;">The strategic implication is that the 2-month plan has to focus disproportionately on Tier C. That's where the connect rate problem lives, that's where competitors won't reach, and that's where Venn's FX and card-spend value proposition lands hardest because these businesses have the most to gain from leaving the Big 5.</p>
+  </section>
+
+  <section>
+    <span class="section-num">03 / The Framework</span>
+    <h2>Four parallel channels. Each attacks a different layer of the connect rate equation.</h2>
+
+    <p class="lede">No single channel fixes this. Adding one new data source gets you marginal gains. The right play is to run four channels in parallel, measure each one's contribution to connect rate independently, and let the data tell us where to double down.</p>
+
+    <div class="channels">
+
+      <div class="channel">
+        <div class="channel-header">
+          <div class="channel-name">01 &nbsp;·&nbsp; The verification waterfall</div>
+          <div class="channel-tag">Fixes: Right Number</div>
+        </div>
+        <div class="channel-what">Rather than replacing Apollo, build a multi-stage verification layer on top of it. Every contact passes through a waterfall that enriches with free and low-cost Canadian-native data sources. Apollo becomes the top of funnel. The waterfall is what turns raw exports into reps-can-actually-dial-this lists.</div>
+
+        <div class="waterfall">
+          <div class="waterfall-label">How the waterfall works</div>
+
+          <div class="waterfall-stage">
+            <div class="waterfall-num">1</div>
+            <div>
+              <div class="waterfall-title">Apollo export (starting list)</div>
+              <div class="waterfall-body">Pull target accounts by industry, size, and geography. Accept that the numbers and emails are roughly 15% accurate out of the box. This is the starting point, not the finished product.</div>
+            </div>
+          </div>
+
+          <div class="waterfall-stage">
+            <div class="waterfall-num">2</div>
+            <div>
+              <div class="waterfall-title">Provincial corporate registry match</div>
+              <div class="waterfall-body">Match each account against Ontario Business Registry, BC Registries, Alberta Corporate Registry, and Quebec Registraire des entreprises<a href="#ref8" class="cite">[8]</a>. <strong>Director and officer names are public record for every incorporated business in Canada.</strong> This surfaces the actual owner's legal name, often missing from Apollo for single-owner SMBs.</div>
+            </div>
+          </div>
+
+          <div class="waterfall-stage">
+            <div class="waterfall-num">3</div>
+            <div>
+              <div class="waterfall-title">Google Business + website enrichment</div>
+              <div class="waterfall-body">For each account, pull the verified Google Business phone (the line owners actually monitor for customer calls, not the reception switchboard), scrape the company website for About and Contact pages, and extract owner emails commonly listed in footers or leadership sections of small-business sites.</div>
+            </div>
+          </div>
+
+          <div class="waterfall-stage">
+            <div class="waterfall-num">4</div>
+            <div>
+              <div class="waterfall-title">Scott's Directories cross-reference</div>
+              <div class="waterfall-body">Cross-check against Scott's Directories<a href="#ref9" class="cite">[9]</a>, a Canada-only B2B database with 945,000+ verified company profiles and 2.5M contacts, including director-level data Apollo misses. For a fraction of ZoomInfo's cost, this fills most of the remaining gaps for Tier C accounts.</div>
+            </div>
+          </div>
+
+          <div class="waterfall-stage">
+            <div class="waterfall-num">5</div>
+            <div>
+              <div class="waterfall-title">Manual spot-check on top 100 accounts</div>
+              <div class="waterfall-body">For the highest-value targets, manually verify against LinkedIn searches, OpenCorporates filings, and domain WHOIS records. Time-intensive but worth it for the 20% of accounts driving 80% of pipeline value.</div>
+            </div>
+          </div>
+
+          <div class="waterfall-stage">
+            <div class="waterfall-num">6</div>
+            <div>
+              <div class="waterfall-title">Salesforce-ready output</div>
+              <div class="waterfall-body">Every verified contact gets tagged with confidence scoring, source attribution, and segment classification. Reps see which numbers are highest-confidence before they dial. A single CSV becomes a tiered call list, not a pile of guesses.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="channel-why"><strong>Why this works better than buying ZoomInfo:</strong> the Canadian corporate registry data is free, structured, and legally public. Apollo and ZoomInfo don't integrate it natively because they're built globally. A purpose-built Canadian waterfall catches every incorporated SMB in Venn's ICP. It also gives Venn a defensible moat: your competitors can buy the same Apollo list, they can't easily replicate this pipeline.</div>
+      </div>
+
+      <div class="channel">
+        <div class="channel-header">
+          <div class="channel-name">02 &nbsp;·&nbsp; Channel diversification beyond phone</div>
+          <div class="channel-tag">Fixes: Answer Rate</div>
+        </div>
+        <div class="channel-what">Test CASL-compliant SMS, direct mail for high-value accounts in dense metros (Toronto, Vancouver, Calgary), and in-person drop-ins for the top 50 target accounts in Tier C. B2B SMS has measurably higher open rates than email, and physical mail cuts through an empty channel because almost zero fintechs are doing it to this segment.</div>
+        <div class="channel-why"><strong>Why it works:</strong> Tier C owners don't answer cold calls from 1-800 numbers, but they read texts and they notice physical mail on their desk. Venn's direct competitors (Float, Loop, Relay)<a href="#ref1" class="cite">[1]</a> won't run this motion because it's slower, harder to measure, and requires operational discipline. That's exactly why it's an edge.</div>
+      </div>
+
+      <div class="channel">
+        <div class="channel-header">
+          <div class="channel-name">03 &nbsp;·&nbsp; Accountant referral motion</div>
+          <div class="channel-tag">Fixes: Right Person + Trust</div>
+        </div>
+        <div class="channel-what">Identify the 200 to 300 Canadian accounting firms serving construction, tourism, digital agencies, and import/export SMBs. Build a partner motion: Venn's QuickBooks and Xero integrations<a href="#ref1" class="cite">[1]</a> give accountants a real product reason to recommend it. One accountant introduction converts orders of magnitude better than a cold call because it arrives with trust pre-installed.</div>
+        <div class="channel-why"><strong>Why it works:</strong> Tier C owners don't trust fintechs, but they trust their accountants implicitly. For most SMBs in this segment, the accountant is the de facto CFO. A referral motion here sidesteps the data problem entirely. The accountant hands you the controller's direct line and says "talk to them."</div>
+      </div>
+
+      <div class="channel">
+        <div class="channel-header">
+          <div class="channel-name">04 &nbsp;·&nbsp; Chamber + BIA partnership play</div>
+          <div class="channel-tag">Fixes: Volume at the top</div>
+        </div>
+        <div class="channel-what">Target the 30 highest-density Chambers of Commerce and Business Improvement Areas (BIAs) in Canada. Toronto alone has approximately 80 BIAs<a href="#ref10" class="cite">[10]</a>. Every metro has a chamber. Their business model is delivering member value. A co-branded email from the Mississauga Chamber to its construction-heavy member list carries orders-of-magnitude more weight than a Venn cold email, and the chamber is motivated to send it because it delivers real savings (FX and interest) to their members.</div>
+        <div class="channel-why"><strong>Why this ships in 8 weeks:</strong> unlike national industry associations (slow, board-gated, relationship-heavy), local chambers and BIAs move fast and have small teams. The deal is simple: Venn offers members a preferred rate or onboarding incentive, the chamber sends one co-branded email per month. Within 2 months, this produces measurable meeting volume from warm lists. It also fixes Tier C because BIAs index heavily on construction, hospitality, and import/export, exactly Venn's hardest segments to reach cold.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <span class="section-num">04 / 8-Week Execution Plan</span>
+    <h2>Build, test, measure, scale.</h2>
+
+    <p>The goal isn't to run all four channels at full volume from day one. It's to build each one in sequence, establish a baseline, run measured experiments, and by week 8 hand Venn a playbook with clear data on what's working.</p>
+
+    <div class="timeline">
+
+      <div class="week-row">
+        <div class="week-label"><strong>Weeks 1–2</strong>Baseline + waterfall build</div>
+        <div class="week-content">
+          <h4>Understand current state. Build the verification waterfall.</h4>
+          <ul>
+            <li>Sit with 2 to 3 reps on outbound calls. Log current connect rate per channel, segmented by Tier A / B / C.</li>
+            <li>Pull baseline metrics from Salesforce: dials, connects, meetings booked, conversion per segment.</li>
+            <li>Build stages 1 to 4 of the verification waterfall: Apollo export, provincial registry match, Google Business enrichment, Scott's cross-reference.</li>
+            <li>Produce a verified contact list of 500 Tier C accounts as Channel 1 proof-of-concept. Measure number accuracy lift over raw Apollo.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="week-row">
+        <div class="week-label"><strong>Weeks 3–4</strong>Channel 2 + waterfall refinement</div>
+        <div class="week-content">
+          <h4>Launch SMS, direct mail, walk-in tests. Refine waterfall stages 5 to 6.</h4>
+          <ul>
+            <li>Draft CASL-compliant SMS templates, test on 200 Tier C accounts. Measure open, reply, meeting-booked rates.</li>
+            <li>Send physical mail to the top 50 accounts, handwritten card with QR code to a Venn landing page. Track unique opens.</li>
+            <li>Run a 1-week Toronto metro walk-in experiment for the top 20 accounts. Measure meeting conversion.</li>
+            <li>Complete waterfall stages 5 (manual spot-check) and 6 (Salesforce-ready output with confidence scoring).</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="week-row">
+        <div class="week-label"><strong>Weeks 5–6</strong>Channel 3 launch</div>
+        <div class="week-content">
+          <h4>Build the accountant referral motion.</h4>
+          <ul>
+            <li>Identify 200 accounting firms serving construction, tourism, digital agencies, and import/export SMBs. Segment by city and book size.</li>
+            <li>Draft the accountant partner pitch: Venn's QuickBooks/Xero integration, referral incentive, co-marketing angle.</li>
+            <li>Run outreach to 50 firms. Target 5 to 10 meetings. Track which firms yield actual client referrals within the engagement.</li>
+            <li>Build referral tracking inside Salesforce so Venn can continue the motion after week 8.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="week-row">
+        <div class="week-label"><strong>Weeks 7–8</strong>Channel 4 + handoff</div>
+        <div class="week-content">
+          <h4>Chamber/BIA partnerships. Packaged playbook. Measured results.</h4>
+          <ul>
+            <li>Contact 30 priority chambers and BIAs (Toronto, Mississauga, Vancouver, Calgary, Montreal, Ottawa). Propose co-branded member offers.</li>
+            <li>Close 3 to 5 partnership pilots with signed terms. Execute at least 2 member-list campaigns before week 8.</li>
+            <li>Consolidate all four channels into a single dashboard: cost per connect, meeting rate, pipeline contribution.</li>
+            <li>Run a handoff session with Alexandra and the rep team. Document which channels to scale, which to sunset.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <span class="section-num">05 / How We Measure Success</span>
+    <h2>Three numbers that tell the whole story.</h2>
+
+    <p>Everything I build is instrumented. Venn doesn't hire me for 2 months and wonder if it worked. Every experiment has a baseline, a target, and a measurable output.</p>
+
+    <div class="metrics-grid">
+      <div class="metric">
+        <div class="metric-label">Primary metric</div>
+        <div class="metric-value">Connect <em>rate</em> lift</div>
+        <div class="metric-note">Measured per rep, per channel, per ICP tier (A/B/C). Target: meaningful, attributable lift against week-1 baseline. Exact target set once baseline is established.</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Secondary metric</div>
+        <div class="metric-value">Meetings <em>booked</em></div>
+        <div class="metric-note">The number that actually matters to the team's quota. Baseline weekly meeting rate per rep, segmented by channel source, tracked for 8 weeks.</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Leading indicator</div>
+        <div class="metric-value">Cost per <em>connect</em></div>
+        <div class="metric-note">Compares channel efficiency: SMS vs. direct mail vs. accountant referral vs. chamber partnership vs. baseline phone. Tells Venn where to allocate rep time after the engagement.</div>
+      </div>
+    </div>
+
+    <p>These metrics sit in a dashboard Alexandra can check weekly. No surprises, no end-of-engagement reveal. If a channel isn't working by week 4, we kill it and reallocate.</p>
+  </section>
+
+  <section>
+    <span class="section-num">06 / What Venn Walks Away With</span>
+    <h2>The playbook outlives the engagement.</h2>
+
+    <p>The point of a 2-month project isn't 2 months of work. It's 2 months building something Venn's team uses for the next 2 years.</p>
+
+    <div class="deliverables">
+      <h3>Final deliverables, handed off in week 8</h3>
+      <ol>
+        <li>
+          <strong>Verified contact database</strong>
+          <span>2,000 to 5,000 Tier C accounts verified through the full 6-stage waterfall. Every contact tagged with confidence score, source attribution, and segment classification.</span>
+        </li>
+        <li>
+          <strong>Waterfall verification runbook</strong>
+          <span>Documented workflow and automation scripts so Venn can replicate the sourcing process for any new ICP segment. Includes registry scrapers, Google Business API scripts, and Salesforce data formatting.</span>
+        </li>
+        <li>
+          <strong>Channel performance report</strong>
+          <span>Dashboard and written analysis comparing cost per connect, meeting rate, and pipeline yield across SMS, direct mail, walk-in, accountant referral, and chamber/BIA channels.</span>
+        </li>
+        <li>
+          <strong>Accountant partner program (built, not theoretical)</strong>
+          <span>50-firm outreach list, partner pitch deck, Salesforce referral tracking, and 5+ signed initial partnerships that Venn's team inherits on day 1 of month 3.</span>
+        </li>
+        <li>
+          <strong>Chamber + BIA partnerships (signed pilots)</strong>
+          <span>3 to 5 active partnership pilots with Canadian chambers and BIAs. Co-branded assets, preferred member offers, and at least 2 member-list campaigns executed during the engagement.</span>
+        </li>
+        <li>
+          <strong>Rep playbook</strong>
+          <span>Tactical document: scripts, templates, objection handlers, channel-specific cadences. When someone joins the team in Q3, they run this motion without rebuilding it.</span>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section>
+    <span class="section-num">07 / Why Me, Why Now</span>
+    <h2>Two months. No overhead. Built to ship.</h2>
+
+    <p>I'm a Queen's stats grad with a defined 2-month window before I start my master's in New York. That's a feature, not a bug. You get focused output with zero long-term commitment from either side. If this engagement proves its value by week 4, we talk about extending. If it doesn't, we've still built something useful.</p>
+
+    <p>Last summer at Rockwell Automation I worked across 30+ enterprise accounts on Salesforce pipeline and contributed to 4 closed deals. I've already built a GTM diagnostic that models exactly this kind of problem, <a href="https://guycohen04.github.io/GTM-pipeline-diagnostic/05_report.html" style="color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent);">see the report here</a>.</p>
+
+    <div class="callout">
+      Your reps know how to sell. The problem isn't them. It's that they're dialing numbers no one answers. Fix that, and everything else compounds.
+    </div>
+
+    <p>Ready to build this with you.</p>
+  </section>
+
+  <div class="references">
+    <h3>References</h3>
+    <ol>
+      <li id="ref1">
+        <strong>Venn product and competitive positioning.</strong> Venn's official site and Fintech Observer's analysis of Venn vs. Float, Loop, and the Big 5 banks (0.25% FX spread vs. 2&ndash;3% bank spreads; QuickBooks and Xero integrations; 2% interest on CAD and USD balances). <a href="https://www.venn.ca/" target="_blank">venn.ca</a> &nbsp;·&nbsp; <a href="https://fintechobserver.substack.com/p/venn-canadas-all-in-one-business" target="_blank">fintechobserver.substack.com/p/venn-canadas-all-in-one-business</a>
+      </li>
+      <li id="ref2">
+        <strong>B2B cold call answer rates.</strong> Industry benchmarks place cold B2B call answer rates in the 15&ndash;25% range, with decision-maker contact rates substantially lower once reception gatekeeping is factored in. Widely referenced across sales enablement research from Gong, Salesloft, and RAIN Group. <a href="https://www.gong.io/blog/cold-call-statistics/" target="_blank">gong.io/blog/cold-call-statistics</a>
+      </li>
+      <li id="ref3">
+        <strong>Key Small Business Statistics 2025.</strong> Innovation, Science and Economic Development Canada. 1,099,521 employer businesses in Canada; 77.3% have fewer than 10 employees; construction SMEs = 87.4% of sector employment; accommodation and food services SMBs = 868,600 employees. <a href="https://ised-isde.canada.ca/site/sme-research-statistics/en/key-small-business-statistics/key-small-business-statistics-2025" target="_blank">ised-isde.canada.ca/sme-research-statistics/key-small-business-statistics-2025</a>
+      </li>
+      <li id="ref4">
+        <strong>Single-owner construction operations in Canada.</strong> SmartScrapers business database (October 2025): 17,774 construction companies in Canada; 92.32% are single-owner operations. Ontario leads with 7,664 firms, followed by BC (3,497) and Quebec (2,901). Data reflects Canadian corporate filings aggregated from public listings. <a href="https://rentechdigital.com/smartscraper/business-report-details/list-of-construction-companies-in-canada" target="_blank">rentechdigital.com (Construction companies in Canada)</a>
+      </li>
+      <li id="ref5">
+        <strong>Age distribution of Canadian self-employed.</strong> Canadian Federation of Independent Business (CFIB) SME profile: 39.0% of self-employed Canadians are aged 55 or over, compared to just 20.4% of paid employees. Only 14.9% are under 35, vs. 38.1% for employees. <a href="https://www.cfib-fcei.ca/en/research-economic-analysis/sme-profiles" target="_blank">cfib-fcei.ca/research-economic-analysis/sme-profiles</a>
+      </li>
+      <li id="ref6">
+        <strong>Tourism SMB digital and demographic data.</strong> SME Profile 2023: Tourism Industries in Canada, Innovation, Science and Economic Development Canada, based on Statistics Canada's Survey on Financing and Growth of Small and Medium Enterprises. 81.5% of tourism SMBs active online vs. 59.2% of all SMBs. 41.9% of tourism primary decision-makers were born outside Canada vs. 31.2% across all industries. <a href="https://ised-isde.canada.ca/site/canadian-tourism-sector/en/sme-profile-2023-tourism-industries-canada" target="_blank">ised-isde.canada.ca/canadian-tourism-sector/sme-profile-2023-tourism-industries-canada</a>
+      </li>
+      <li id="ref7">
+        <strong>Canadian SME export participation.</strong> Global Affairs Canada, Office of the Chief Economist: only 12.1% of Canadian SMEs exported in 2020. Import/export decision-makers are a small and geographically dispersed slice of the Canadian SMB population. <a href="https://international.gc.ca/trade-commerce/economist-economiste/analysis-analyse/sme-characteristics-exporters-pme-caracteristiques-exportatrices.aspx?lang=eng" target="_blank">international.gc.ca (SME exporters in Canada)</a>
+      </li>
+      <li id="ref8">
+        <strong>Canadian provincial corporate registries.</strong> Public records of incorporated businesses' directors and officers are available through Ontario Business Registry, BC Registries, Alberta Corporate Registry, and Quebec Registraire des entreprises. Data includes officer names, registered addresses, and business numbers. <a href="https://www.ontario.ca/page/ontario-business-registry" target="_blank">ontario.ca/page/ontario-business-registry</a> &nbsp;·&nbsp; <a href="https://www.bcregistry.ca/" target="_blank">bcregistry.ca</a>
+      </li>
+      <li id="ref9">
+        <strong>Scott's Directories (Canadian B2B database).</strong> Canada-only B2B database with 945,000+ verified company profiles and 2.5M contacts, purpose-built for Canadian prospecting including provincial breakdowns and NAICS classifications. <a href="https://www.scottsdirectories.com/b2b-directory/" target="_blank">scottsdirectories.com/b2b-directory</a>
+      </li>
+      <li id="ref10">
+        <strong>Toronto Business Improvement Areas.</strong> The City of Toronto has approximately 80 Business Improvement Areas (BIAs) representing local business associations across commercial districts. Most major Canadian metros have similar structures, providing concentrated access to member SMBs across construction, tourism, retail, and services. <a href="https://www.toronto.ca/business-economy/business-operation-growth/business-improvement-areas/" target="_blank">toronto.ca (Business Improvement Areas)</a>
+      </li>
+    </ol>
+  </div>
+
+  <footer>
+    <div class="sig">/ Guy Cohen</div>
+    <div class="contact">
+      guy.cohen@queensu.ca<br>
+      416.918.8400<br>
+      <a href="https://guycohen04.github.io/GTM-pipeline-diagnostic/05_report.html">GTM Diagnostic →</a>
+    </div>
+  </footer>
+
+</div>
+
+</body>
+</html>
